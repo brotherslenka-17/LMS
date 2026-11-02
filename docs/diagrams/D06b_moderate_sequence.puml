@@ -1,0 +1,42 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D06b | Separate moderation and release with revision guards
+actor HoD
+participant Console as UI
+participant AssessmentService as S
+participant AuthService as A
+participant "IRepository / SQLite" as R
+participant ILatePenalty as P
+HoD -> UI : moderate(submission, expected revision, reason)
+UI -> S : moderate(token, id, rev, optional raw/feedback, reason)
+S -> R : BEGIN IMMEDIATE
+S -> A : authorize(token)
+S -> R : load course, department, current assessment
+S -> S : require HoD scope, MARKED and matching rev
+S -> P : calculate(raw, maximum, elapsed)
+S -> R : save assessment / phase / old-new event
+S -> R : COMMIT
+S --> UI : MODERATED; new revision
+HoD -> UI : refresh work, then release(new revision, reason)
+UI -> S : transition(token, id, rev, RELEASE, reason)
+S -> R : BEGIN IMMEDIATE
+S -> A : authorize(token)
+S -> R : reload current scope / phase / revision
+S -> S : require MODERATED and matching revision
+S -> R : save release metadata / phase / audit event
+S -> R : COMMIT
+S --> UI : RELEASED
+note over S,R
+Any validation or storage error rolls back the whole command.
+Student results query filters RELEASED and authenticated student.
+end note
+@enduml

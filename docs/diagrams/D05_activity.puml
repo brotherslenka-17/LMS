@@ -1,0 +1,49 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D05 | Assessment workflow with responsibility swimlanes
+|Student|
+start
+:Select assignment and file;
+|LMS|
+:Authorize ownership and enrolment;
+if (Valid first or eligible replacement?) then (yes)
+:Atomically save immutable receipt;
+else (no)
+:Show error; preserve committed work;
+stop
+endif
+|Lecturer|
+:After effective deadline, review work;
+:Enter raw mark, feedback and reason;
+|LMS|
+:Check course, time, phase and row;
+:Compute penalty; save mark and audit;
+|HoD|
+:Review departmental work and feedback;
+if (Accept?) then (yes)
+:Moderate current revision;
+else (return)
+:Return for correction with reason;
+|LMS|
+:Keep MARKED and hidden; record event;
+stop
+endif
+|LMS|
+:Save MODERATED and audit atomically;
+|HoD|
+:Release approved current revision;
+|LMS|
+:Validate revision; save RELEASED and audit;
+|Student|
+:View final mark and feedback;
+stop
+@enduml

@@ -1,0 +1,13 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "sqlite": "3.50.4 bundled",
+  "libsodium": "1.0.20 static build",
+  "catch2": "2.13.10",
+  "cppcheck": "2.17.1",
+  "gcovr": "8.6",
+  "execution": "Local Linux container; not school workstation",
+  "hosted_ci": "Not run; source upload blocked pending explicit authorization",
+  "gate2": "User-reported approval before implementation",
+  "github": "Private repository created; application not uploaded"
+}

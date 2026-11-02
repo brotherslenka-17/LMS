@@ -1,0 +1,8 @@
+build*/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.gcda
+*.gcno
+__pycache__/

@@ -1,0 +1,57 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D03a | Polymorphic roles and policy interfaces
+abstract class User {
+- id_ : Id
++ User(id : Id)
++ ~User() : virtual
++ role() : Role {abstract}
++ id() : Id
+}
+class Student {
++ role() : Role
+}
+class Lecturer {
++ role() : Role
+}
+class HeadOfDepartment {
++ role() : Role
+}
+class Administrator {
++ role() : Role
+}
+User <|-- Student
+User <|-- Lecturer
+User <|-- HeadOfDepartment
+User <|-- Administrator
+interface IClock {
++ now() : TimePoint
+}
+class SystemClock {
++ now() : TimePoint
+}
+SystemClock ..|> IClock
+interface ILatePenalty {
++ calculate(raw : MarkUnits, maximum : MarkUnits, elapsed : TimePoint) : MarkUnits
+}
+class TenPercentPenalty {
++ calculate(raw : MarkUnits, maximum : MarkUnits, elapsed : TimePoint) : MarkUnits
+}
+TenPercentPenalty ..|> ILatePenalty
+note bottom of User
+Id, TimePoint and MarkUnits are int64_t aliases,
+not distinct wrapper classes. Roles use enum class Role.
+makeUser returns unique_ptr<User>; authorization calls role().
+end note
+User -[hidden]down-> IClock
+IClock -[hidden]down-> ILatePenalty
+@enduml

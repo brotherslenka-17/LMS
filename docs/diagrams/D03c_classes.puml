@@ -1,0 +1,46 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D03c | Application classes - actual C++ declarations
+class AssessmentService {
++ AssessmentService(IRepository &repo, AuthService &auth, IClock &clock, ILatePenalty &penalty)
++ std::vector<Course> courses(const std::string &token)
++ std::vector<AssignmentView> assignments(const std::string &token, Id course)
++ Id createAssignment(const std::string &token, Id course, const std::string &title, const std::string &instructions, TimePoint deadline, MarkUnits maximum)
++ void editAssignment(const std::string &token, Id assignment, TimePoint deadline, MarkUnits maximum)
++ void extendIndividual(const std::string &token, Id assignment, Id student, TimePoint deadline, const std::string &reason)
++ void extendClass(const std::string &token, Id assignment, TimePoint deadline, const std::string &reason)
++ SubmissionVersion submit(const std::string &token, Id assignment, const std::string &filename, const Bytes &content)
++ std::vector<WorkView> work(const std::string &token, Id assignment)
++ SubmissionVersion readWork(const std::string &token, Id submission)
++ void mark(const std::string &token, Id submission, int expectedRow, MarkUnits raw, const std::string &feedback, const std::string &reason)
++ void moderate(const std::string &token, Id submission, int expectedRevision, std::optional<MarkUnits> raw, std::optional<std::string> feedback, const std::string &reason)
++ void transition(const std::string &token, Id submission, int expectedRevision, const std::string &action, const std::string &reason)
++ std::vector<ReleasedResult> results(const std::string &token)
++ std::vector<AssessmentEvent> history(const std::string &token, Id submission)
+- repo_ : IRepository&
+- clock_ : IClock&
+- auth_ : AuthService&
+- penalty_ : ILatePenalty&
+}
+interface IRepository
+interface IClock
+AssessmentService --> "1" IRepository
+AssessmentService --> "1" IClock
+interface ILatePenalty
+AssessmentService --> "1" ILatePenalty
+class AuthService
+AssessmentService --> "1" AuthService
+note bottom
+Signatures reproduce the C++ header. Private helper methods remain in source.
+Services borrow dependencies; the composition root owns their lifetimes.
+end note
+@enduml

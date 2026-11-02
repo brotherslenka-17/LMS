@@ -1,0 +1,90 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D07a | Relational schema v2
+entity users {
+ * id : INTEGER <<PK>>
+ * username : TEXT
+ * display_name : TEXT
+ * password_hash : TEXT
+ * role : TEXT
+ * active : INTEGER
+ * must_change_password : INTEGER
+ * failed_attempts : INTEGER
+   locked_until : INTEGER
+}
+entity departments {
+ * id : INTEGER <<PK>>
+ * name : TEXT
+}
+entity department_heads {
+ * department_id : INTEGER <<PK>> <<FK>>
+ * hod_id : INTEGER <<FK>>
+}
+entity courses {
+ * id : INTEGER <<PK>>
+ * code : TEXT
+ * title : TEXT
+ * department_id : INTEGER <<FK>>
+ * active : INTEGER
+}
+entity lecturer_courses {
+ * course_id : INTEGER <<PK>> <<FK>>
+ * lecturer_id : INTEGER <<PK>> <<FK>>
+}
+entity enrolments {
+ * course_id : INTEGER <<PK>> <<FK>>
+ * student_id : INTEGER <<PK>> <<FK>>
+ * active : INTEGER
+}
+entity assignments {
+ * id : INTEGER <<PK>>
+ * course_id : INTEGER <<FK>>
+ * creator_id : INTEGER <<FK>>
+ * title : TEXT
+ * instructions : TEXT
+ * deadline_utc : INTEGER
+ * max_mark_units : INTEGER
+}
+entity individual_extensions {
+ * assignment_id : INTEGER <<PK>> <<FK>>
+ * student_id : INTEGER <<PK>> <<FK>>
+ * deadline_utc : INTEGER
+ * granted_by : INTEGER <<FK>>
+ * granted_at : INTEGER
+ * reason : TEXT
+}
+entity class_extensions {
+ * assignment_id : INTEGER <<PK>> <<FK>>
+ * deadline_utc : INTEGER
+ * granted_by : INTEGER <<FK>>
+ * granted_at : INTEGER
+ * reason : TEXT
+}
+users ||--o{ department_heads
+departments ||--o| department_heads
+departments ||--o{ courses
+users ||--o{ lecturer_courses
+courses ||--o{ lecturer_courses
+users ||--o{ enrolments
+courses ||--o{ enrolments
+users ||--o{ assignments
+courses ||--o{ assignments
+users ||--o{ individual_extensions
+assignments ||--o{ individual_extensions
+users ||--o{ class_extensions
+assignments ||--o| class_extensions
+note bottom
+* means mandatory (including primary keys). Connectors show parent-child cardinality.
+Multiple FKs to users share one connector; exact column mapping is in the dictionary.
+Overlapping users/assignments are the same tables on both sheets.
+end note
+@enduml

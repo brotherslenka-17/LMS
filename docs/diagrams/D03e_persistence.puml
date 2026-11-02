@@ -1,0 +1,54 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D03e | Persistence port, adapter and transaction lifetime
+interface IRepository {
++ begin() : void
++ commit() : void
++ rollback() : void noexcept
++ assignment(id : Id) : Assignment
++ submission(id : Id) : Submission
++ latestVersion(id : Id, withBytes : bool) : SubmissionVersion
++ addSubmission(assignment : Id, student : Id) : Id
++ addVersion(version : const SubmissionVersion&) : void
++ saveSubmission(submission : const Submission&) : void
++ assessment(id : Id) : optional<Assessment>
++ saveAssessment(assessment : const Assessment&) : void
++ addEvent(event : const AssessmentEvent&) : void
++ events(submission : Id) : vector<AssessmentEvent>
++ backup(path : const string&) : void
+}
+class SqliteRepository {
++ SqliteRepository(path : const string&)
++ ~SqliteRepository()
+- db_ : sqlite3*
+}
+class UnitOfWork {
+- repo_ : IRepository&
+- committed_ : bool
++ UnitOfWork(repo : IRepository&)
++ ~UnitOfWork()
++ commit() : void
+}
+SqliteRepository ..|> IRepository : implements all operations
+UnitOfWork --> "1" IRepository : borrows
+note right of SqliteRepository
+Prepared statements and connection cleanup use RAII.
+All interface operations are overridden.
+Only selected assessment and transaction methods
+are expanded here; full contract is Repository.hpp.
+end note
+note bottom of UnitOfWork
+Constructor begins the transaction.
+Destructor rolls back unless commit succeeded.
+Copy/assignment are deleted.
+end note
+@enduml

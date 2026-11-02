@@ -1,0 +1,38 @@
+name: C++17 quality gates
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build and analysis tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libsodium-dev
+          python3 -m pip install gcovr==8.6 cppcheck==1.5.1
+      - name: Restore pinned dependencies
+        run: python3 scripts/fetch_dependencies.py
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DLMS_COVERAGE=ON
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Automated tests
+        run: ctest --test-dir build --output-on-failure
+      - name: Business-layer coverage gate
+        run: gcovr --root . --filter 'src/(domain|application)/' --fail-under-line 70 --json-summary build/coverage.json --html-details build/coverage.html --print-summary
+      - name: Static analysis
+        run: cppcheck --enable=warning,performance,portability --error-exitcode=1 --std=c++17 --suppress=missingIncludeSystem -I include -I build/generated src
+      - name: System smoke test
+        run: python3 scripts/system_test.py build/lms build/system-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quality-evidence
+          path: |
+            build/test-results.xml
+            build/coverage*
+            build/Testing/Temporary/LastTest.log
+            build/system-evidence/

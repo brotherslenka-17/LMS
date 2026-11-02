@@ -1,0 +1,139 @@
+=== bootstrap ===
+Initial administrator username: Administrator display name: Administrator password (12-128 bytes): Administrator created. Restart without --init.
+
+
+=== administration and initial password changes ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome School administrator (ADMIN)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Administrator: users, add-user, edit-user, reset-password, departments, add-department, rename-department, set-hod, add-course, edit-course, set-lecturer, enrol, roster, backup
+lms: Username: Display name: Role [STUDENT/LECTURER/HOD/ADMIN]: Temporary password (12-128 bytes): Created user 2
+OK
+lms: Username: Display name: Role [STUDENT/LECTURER/HOD/ADMIN]: Temporary password (12-128 bytes): Created user 3
+OK
+lms: Username: Display name: Role [STUDENT/LECTURER/HOD/ADMIN]: Temporary password (12-128 bytes): Created user 4
+OK
+lms: Department name: Created department 1
+OK
+lms: Department ID: HoD user ID: OK
+lms: Course code: Course title: Department ID: Created course 1
+OK
+lms: Course ID: Lecturer user ID: Assigned [y/n]: OK
+lms: Course ID: Student user ID: Active enrolment [y/n]: OK
+lms: Logged out.
+lms: Username: Password: Welcome teacher (LECTURER)
+Temporary password: use passwd now.
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Lecturer: create-assignment, edit-assignment, extend, extend-class, work, export-work, mark, history
+lms: Current password: New password: Password changed.
+lms: Logged out.
+lms: Username: Password: Welcome head (HOD)
+Temporary password: use passwd now.
+Common: help, whoami, courses, assignments, passwd, logout, quit
+HoD: work, export-work, moderate, release, return, reopen, history
+lms: Current password: New password: Password changed.
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Temporary password: use passwd now.
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: Current password: New password: Password changed.
+lms: Logged out.
+lms: 
+
+=== assignment and on-time submission ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome teacher (LECTURER)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Lecturer: create-assignment, edit-assignment, extend, extend-class, work, export-work, mark, history
+lms: Course ID: Title: Instructions: Deadline YYYY-MM-DD HH:MM:SS (+02:00): Maximum mark: Created assignment 1
+OK
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: Assignment ID: Work file path: RECEIPT submission=1 version=1 at 2026-10-25 00:11:52 +02:00 | ON TIME
+OK
+lms: No released results.
+OK
+lms: 
+
+=== mark moderate release and student view ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome teacher (LECTURER)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Lecturer: create-assignment, edit-assignment, extend, extend-class, work, export-work, mark, history
+lms: Submission ID: Expected row version from work list: Raw mark: Written feedback: Reason for this saved mark: OK
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: No released results.
+OK
+lms: Logged out.
+lms: Username: Password: Welcome head (HOD)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+HoD: work, export-work, moderate, release, return, reopen, history
+lms: Submission ID: Expected assessment revision: Adjusted raw mark (blank keeps existing): Adjusted feedback (blank keeps existing): Moderation reason: OK
+lms: Submission ID: Expected assessment revision: Reason: OK
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: Lab | 65.00 / 80.00 | Good reasoning
+OK
+lms: Assignment ID: Work file path: Error: Resubmission is only allowed before the effective deadline and before marking.
+lms: 1 | SCI1 | Science | department=1 | active=1
+OK
+lms: 
+
+=== reopen and stale approval denial ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome head (HOD)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+HoD: work, export-work, moderate, release, return, reopen, history
+lms: Submission ID: Expected assessment revision: Reason: OK
+lms: Submission ID: Expected assessment revision: Reason: Error: Only a current moderated result may be released.
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: No released results.
+OK
+lms: 
+
+=== invalid commands and numeric input ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome teacher (LECTURER)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Lecturer: create-assignment, edit-assignment, extend, extend-class, work, export-work, mark, history
+lms: Course ID: Error: Enter a positive whole number.
+lms: Error: Unknown command. Type help.
+lms: 2 | teacher | LECTURER
+lms: 
+
+=== CR1 class extension displayed to student ===
+Moderated LMS 1.1.0 | school time UTC+02:00 | type login or quit
+lms: Username: Password: Welcome teacher (LECTURER)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Lecturer: create-assignment, edit-assignment, extend, extend-class, work, export-work, mark, history
+lms: Course ID: Title: Instructions: Deadline YYYY-MM-DD HH:MM:SS (+02:00): Maximum mark: Created assignment 2
+OK
+lms: Assignment ID: Class deadline (+02:00): Class extension reason: OK
+lms: Logged out.
+lms: Username: Password: Welcome student (STUDENT)
+Common: help, whoami, courses, assignments, passwd, logout, quit
+Student: submit, export-work, results
+lms: Course ID: 1 | Lab | maximum=80.00
+Instructions: Explain the result
+Base deadline: 2026-10-25 00:12:01 +02:00
+Effective deadline: 2026-10-25 00:12:01 +02:00
+Submission 1 | MARKED
+2 | Class task | maximum=100.00
+Instructions: Explain CR1
+Base deadline: 2026-10-26 00:12:03 +02:00
+Effective deadline: 2026-10-27 00:12:03 +02:00
+Class extension: 2026-10-27 00:12:03 +02:00
+Class reason: School closure
+OK
+lms: 

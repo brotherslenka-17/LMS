@@ -1,0 +1,163 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+       4      2     43      2       4 lms::Statement::Statement@9-12@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     10      0       1 lms::Statement::~Statement@13-13@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     22      2       1 lms::Statement::bind@16-16@project/lms/src/infrastructure/SqliteRepository.cpp
+       4      1     44      2       4 lms::Statement::bind@17-20@project/lms/src/infrastructure/SqliteRepository.cpp
+       4      1     42      2       4 lms::Statement::bind@21-24@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     17      1       1 lms::Statement::null@25-25@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      2     29      2       6 lms::Statement::nullable@26-31@project/lms/src/infrastructure/SqliteRepository.cpp
+       9      3     37      0       9 lms::Statement::row@32-40@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     15      0       1 lms::Statement::done@41-41@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     16      1       1 lms::Statement::integer@42-42@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      2     45      1       6 lms::Statement::text@43-48@project/lms/src/infrastructure/SqliteRepository.cpp
+       1      1     18      1       1 lms::Statement::isNull@49-49@project/lms/src/infrastructure/SqliteRepository.cpp
+       5      2     55      1       5 lms::Statement::blob@50-54@project/lms/src/infrastructure/SqliteRepository.cpp
+       4      2     19      1       4 lms::Statement::check@57-60@project/lms/src/infrastructure/SqliteRepository.cpp
+       4      2     36      2       4 lms::exec@64-67@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     88      1       6 lms::readUser@68-73@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     49      1       3 lms::readCourse@74-76@project/lms/src/infrastructure/SqliteRepository.cpp
+       4      1     61      1       4 lms::readAssignment@77-80@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     53      1       3 lms::readSubmission@81-83@project/lms/src/infrastructure/SqliteRepository.cpp
+      37      7    245      1      37 lms::SqliteRepository::SqliteRepository@85-121@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     12      0       3 lms::SqliteRepository::~SqliteRepository@122-124@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     14      0       3 lms::SqliteRepository::begin@125-127@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     14      0       3 lms::SqliteRepository::commit@128-130@project/lms/src/infrastructure/SqliteRepository.cpp
+       3      1     21      0       3 lms::SqliteRepository::rollback@131-133@project/lms/src/infrastructure/SqliteRepository.cpp
+       5      1     35      0       5 lms::SqliteRepository::userCount@134-138@project/lms/src/infrastructure/SqliteRepository.cpp
+       5      1     35      0       5 lms::SqliteRepository::activeAdmins@139-143@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     45      1       7 lms::SqliteRepository::user@144-150@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     49      1       7 lms::SqliteRepository::userByName@151-157@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     44      0       7 lms::SqliteRepository::users@158-164@project/lms/src/infrastructure/SqliteRepository.cpp
+      15      1    124      1      15 lms::SqliteRepository::addUser@165-179@project/lms/src/infrastructure/SqliteRepository.cpp
+      13      1    104      1      13 lms::SqliteRepository::saveUser@180-192@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     55      0       7 lms::SqliteRepository::departments@193-199@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     42      1       6 lms::SqliteRepository::addDepartment@200-205@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     60      2       7 lms::SqliteRepository::renameDepartment@206-212@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     45      2       7 lms::SqliteRepository::setHead@213-219@project/lms/src/infrastructure/SqliteRepository.cpp
+       5      2     42      1       5 lms::SqliteRepository::head@220-224@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     44      0       7 lms::SqliteRepository::courses@225-231@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     43      1       6 lms::SqliteRepository::course@232-237@project/lms/src/infrastructure/SqliteRepository.cpp
+       9      1     75      1       9 lms::SqliteRepository::addCourse@238-246@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     58      1       7 lms::SqliteRepository::saveCourse@247-253@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      2     51      3       7 lms::SqliteRepository::setLecturer@254-260@project/lms/src/infrastructure/SqliteRepository.cpp
+       8      1     57      3       8 lms::SqliteRepository::setEnrolment@261-268@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     45      2       6 lms::SqliteRepository::teaches@269-274@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     45      2       6 lms::SqliteRepository::enrolled@275-280@project/lms/src/infrastructure/SqliteRepository.cpp
+       9      2     73      1       9 lms::SqliteRepository::enrolments@281-289@project/lms/src/infrastructure/SqliteRepository.cpp
+       9      2     57      1       9 lms::SqliteRepository::lecturers@290-298@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     43      1       6 lms::SqliteRepository::assignment@299-304@project/lms/src/infrastructure/SqliteRepository.cpp
+       8      2     55      1       8 lms::SqliteRepository::assignments@305-312@project/lms/src/infrastructure/SqliteRepository.cpp
+      13      1     99      1      13 lms::SqliteRepository::addAssignment@313-325@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     58      1       7 lms::SqliteRepository::saveAssignment@326-332@project/lms/src/infrastructure/SqliteRepository.cpp
+       5      1     33      1       5 lms::SqliteRepository::hasSubmissions@333-337@project/lms/src/infrastructure/SqliteRepository.cpp
+       9      2     97      2       9 lms::SqliteRepository::extension@338-346@project/lms/src/infrastructure/SqliteRepository.cpp
+      13      1     94      1      13 lms::SqliteRepository::saveExtension@347-359@project/lms/src/infrastructure/SqliteRepository.cpp
+       8      2     57      2       8 lms::SqliteRepository::submissionFor@360-367@project/lms/src/infrastructure/SqliteRepository.cpp
+       6      1     43      1       6 lms::SqliteRepository::submission@368-373@project/lms/src/infrastructure/SqliteRepository.cpp
+       8      2     55      1       8 lms::SqliteRepository::submissions@374-381@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     50      2       7 lms::SqliteRepository::addSubmission@382-388@project/lms/src/infrastructure/SqliteRepository.cpp
+       7      1     58      1       7 lms::SqliteRepository::saveSubmission@389-395@project/lms/src/infrastructure/SqliteRepository.cpp
+      13      2     97      2      13 lms::SqliteRepository::latestVersion@396-408@project/lms/src/infrastructure/SqliteRepository.cpp
+      10      1     91      1      10 lms::SqliteRepository::addVersion@409-418@project/lms/src/infrastructure/SqliteRepository.cpp
+      19      2    146      1      19 lms::SqliteRepository::assessment@419-437@project/lms/src/infrastructure/SqliteRepository.cpp
+      24      1    174      1      24 lms::SqliteRepository::saveAssessment@438-461@project/lms/src/infrastructure/SqliteRepository.cpp
+      30      4    227      1      30 lms::SqliteRepository::addEvent@462-491@project/lms/src/infrastructure/SqliteRepository.cpp
+      28      5    258      1      28 lms::SqliteRepository::events@492-519@project/lms/src/infrastructure/SqliteRepository.cpp
+      16      1    143      8      16 lms::SqliteRepository::adminEvent@520-535@project/lms/src/infrastructure/SqliteRepository.cpp
+      24      5    166      1      24 lms::SqliteRepository::backup@536-559@project/lms/src/infrastructure/SqliteRepository.cpp
+       8     11     87      1       8 lms::validUsername@8-15@project/lms/src/application/Services.cpp
+       3      2     20      1       3 lms::validDeadline@16-18@project/lms/src/application/Services.cpp
+       3      2     20      1       3 lms::validMaximum@19-21@project/lms/src/application/Services.cpp
+       6      1     32      1       6 lms::clearApproval@22-27@project/lms/src/application/Services.cpp
+       3      1     35      2       3 lms::AuthService::AuthService@29-31@project/lms/src/application/Services.cpp
+      10      2     91      1      10 lms::AuthService::hashPassword@32-41@project/lms/src/application/Services.cpp
+      19      1    144      3      19 lms::AuthService::bootstrap@42-60@project/lms/src/application/Services.cpp
+      30      6    247      2      30 lms::AuthService::login@61-90@project/lms/src/application/Services.cpp
+       3      1     20      1       3 lms::AuthService::logout@91-93@project/lms/src/application/Services.cpp
+      19      7    185      2      19 lms::AuthService::authorize@94-112@project/lms/src/application/Services.cpp
+       4      1     35      1       4 lms::AuthService::mustChange@113-116@project/lms/src/application/Services.cpp
+      20      2    185      3      20 lms::AuthService::changePassword@117-136@project/lms/src/application/Services.cpp
+       5      1     39      1       5 lms::AdminService::admin@137-141@project/lms/src/application/Services.cpp
+       5      3     43      2       5 lms::AdminService::roleUser@142-146@project/lms/src/application/Services.cpp
+       5      1     65      6       5 lms::AdminService::audit@147-151@project/lms/src/application/Services.cpp
+       7      2     46      1       7 lms::AdminService::users@152-158@project/lms/src/application/Services.cpp
+       4      1     25      1       4 lms::AdminService::departments@159-162@project/lms/src/application/Services.cpp
+      16      1    140      5      16 lms::AdminService::createUser@163-178@project/lms/src/application/Services.cpp
+      16      4    168      4      16 lms::AdminService::editUser@179-194@project/lms/src/application/Services.cpp
+      13      1    118      3      13 lms::AdminService::resetPassword@195-207@project/lms/src/application/Services.cpp
+       9      1     79      2       9 lms::AdminService::createDepartment@208-216@project/lms/src/application/Services.cpp
+      14      3    122      3      14 lms::AdminService::renameDepartment@217-230@project/lms/src/application/Services.cpp
+       9      1     94      3       9 lms::AdminService::assignHead@231-239@project/lms/src/application/Services.cpp
+      11      1    112      4      11 lms::AdminService::createCourse@240-250@project/lms/src/application/Services.cpp
+      13      1    128      4      13 lms::AdminService::editCourse@251-263@project/lms/src/application/Services.cpp
+      11      1    126      4      11 lms::AdminService::assignLecturer@264-274@project/lms/src/application/Services.cpp
+      11      1    126      4      11 lms::AdminService::enrol@275-285@project/lms/src/application/Services.cpp
+       5      1     36      2       5 lms::AdminService::enrolments@286-290@project/lms/src/application/Services.cpp
+       5      1     36      2       5 lms::AdminService::lecturers@291-295@project/lms/src/application/Services.cpp
+       5      1     41      2       5 lms::AdminService::backup@296-300@project/lms/src/application/Services.cpp
+      11      5    101      2      11 lms::AssessmentService::accessible@302-312@project/lms/src/application/Services.cpp
+       4      2     39      2       4 lms::AssessmentService::lecturer@313-316@project/lms/src/application/Services.cpp
+       4      2     39      2       4 lms::AssessmentService::hod@317-320@project/lms/src/application/Services.cpp
+       8      4     83      3       8 lms::AssessmentService::workAccess@321-328@project/lms/src/application/Services.cpp
+       4      2     48      2       4 lms::AssessmentService::deadline@329-332@project/lms/src/application/Services.cpp
+       8      1     88      1       8 lms::AssessmentService::courses@333-340@project/lms/src/application/Services.cpp
+      19      4    176      2      19 lms::AssessmentService::assignments@341-359@project/lms/src/application/Services.cpp
+      17      1    171      6      17 lms::AssessmentService::createAssignment@360-376@project/lms/src/application/Services.cpp
+      20      1    186      4      20 lms::AssessmentService::editAssignment@377-396@project/lms/src/application/Services.cpp
+      21      5    253      5      21 lms::AssessmentService::extendIndividual@397-417@project/lms/src/application/Services.cpp
+      29      4    276      4      29 lms::AssessmentService::submit@418-446@project/lms/src/application/Services.cpp
+      13      3    157      2      13 lms::AssessmentService::work@447-459@project/lms/src/application/Services.cpp
+       6      1     57      2       6 lms::AssessmentService::readWork@460-465@project/lms/src/application/Services.cpp
+      28      3    216      7      28 lms::AssessmentService::saveChange@466-493@project/lms/src/application/Services.cpp
+      30      3    290      6      30 lms::AssessmentService::mark@494-523@project/lms/src/application/Services.cpp
+      26      4    253      6      26 lms::AssessmentService::moderate@524-549@project/lms/src/application/Services.cpp
+      31      7    260      5      31 lms::AssessmentService::transition@550-580@project/lms/src/application/Services.cpp
+      16      7    167      1      16 lms::AssessmentService::results@581-596@project/lms/src/application/Services.cpp
+       6      1     55      2       6 lms::AssessmentService::history@597-602@project/lms/src/application/Services.cpp
+       4      2     25      2       4 lms::require@9-12@project/lms/src/domain/Domain.cpp
+      10      5     94      3      10 lms::textRequired@13-22@project/lms/src/domain/Domain.cpp
+       7      3     70      1       7 lms::safeFilename@23-29@project/lms/src/domain/Domain.cpp
+      26     10    180      1      26 lms::parseMark@30-55@project/lms/src/domain/Domain.cpp
+       5      1     50      1       5 lms::formatMark@56-60@project/lms/src/domain/Domain.cpp
+      13      4    151      1      16 lms::parseLocalTime@61-76@project/lms/src/domain/Domain.cpp
+       9      2     77      1      12 lms::formatLocalTime@77-88@project/lms/src/domain/Domain.cpp
+      13      5     51      1      13 lms::roleName@89-101@project/lms/src/domain/Domain.cpp
+      11      5     61      1      11 lms::parseRole@102-112@project/lms/src/domain/Domain.cpp
+      13      5     86      2      13 lms::makeUser@113-125@project/lms/src/domain/Domain.cpp
+       5      1     41      0       5 lms::SystemClock::now@126-130@project/lms/src/domain/Domain.cpp
+       3      2     24      1       3 lms::lateDays@131-133@project/lms/src/domain/Domain.cpp
+       8      4     82      3       8 lms::TenPercentPenalty::calculate@134-141@project/lms/src/domain/Domain.cpp
+       7      2     54      1       7 input@16-22@project/lms/src/ui/main.cpp
+      22      7    178      1      28 Secret::Secret@25-52@project/lms/src/ui/main.cpp
+       4      2     29      0       4 Secret::~Secret@53-56@project/lms/src/ui/main.cpp
+      12      3     82      1      12 number@60-71@project/lms/src/ui/main.cpp
+       5      1     46      1       5 revision@72-76@project/lms/src/ui/main.cpp
+       5      2     39      1       5 yes@77-81@project/lms/src/ui/main.cpp
+      13      3    160      1      13 readFile@82-94@project/lms/src/ui/main.cpp
+       9      1    110      2       9 writeFile@95-103@project/lms/src/ui/main.cpp
+      14      5     77      1      14 help@104-117@project/lms/src/ui/main.cpp
+      69     19    711      3      69 adminCommand@118-186@project/lms/src/ui/main.cpp
+     114     32   1295      3     114 learningCommand@187-300@project/lms/src/ui/main.cpp
+      94     23    664      2      96 main@302-397@project/lms/src/ui/main.cpp
+4 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+    559       8.2     1.6       64.8        66     project/lms/src/infrastructure/SqliteRepository.cpp
+    602      12.1     2.5      113.5        49     project/lms/src/application/Services.cpp
+    136       9.8     3.8       76.3        13     project/lms/src/domain/Domain.cpp
+    386      30.7     8.3      287.1        12     project/lms/src/ui/main.cpp
+
+===========================================================================================================
+!!!! Warnings (cyclomatic_complexity > 20 or length > 1000 or nloc > 1000000 or parameter_count > 100) !!!!
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+     114     32   1295      3     114 learningCommand@187-300@project/lms/src/ui/main.cpp
+      94     23    664      2      96 main@302-397@project/lms/src/ui/main.cpp
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+      1683      11.7     2.7      102.0      140            2      0.01    0.13

@@ -1,0 +1,44 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D02 | Layered implementation and dependencies
+top to bottom direction
+package "Console" {
+component "main.cpp\nparse / display / file IO" as CLI
+}
+package "Application" {
+component "Services.cpp\nAuth / Admin / Assessment" as Service
+}
+package "Domain" {
+interface IClock
+interface ILatePenalty
+component "Domain.cpp\nroles / parsing / penalty" as DomainCode
+interface IRepository
+}
+package "Infrastructure" {
+component "SqliteRepository.cpp\nprepared SQL / migration / backup" as DB
+}
+component "libsodium\nArgon2id / random bytes" as Sodium
+component "SQLite 3.50.4" as SQLite
+CLI --> Service : commands + opaque token
+Service --> DomainCode
+Service --> IClock
+Service --> ILatePenalty
+Service --> IRepository
+Service --> Sodium
+DB ..|> IRepository
+DB --> SQLite
+note bottom of Service
+Application owns transaction scope.
+UnitOfWork commits or rolls back.
+UI never constructs SQL.
+end note
+@enduml

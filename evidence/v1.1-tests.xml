@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="lms_tests" errors="0" failures="0" tests="289" hostname="tbd" time="13.900" timestamp="2026-09-24T16:25:00Z">
+    <testcase classname="lms_tests.global" name="UT01 all late-day boundaries" time="0.000" status="run"/>
+    <testcase classname="lms_tests.global" name="UT02 mark partitions and rounding" time="0.000" status="run"/>
+    <testcase classname="lms_tests.global" name="UT05 input partitions reject malformed values" time="0.000" status="run"/>
+    <testcase classname="lms_tests.global" name="UT06 school time round trip and calendar validation" time="0.000" status="run"/>
+    <testcase classname="lms_tests.global" name="UT07 concrete roles obey abstract User contract" time="0.000" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT01 session authentication logout inactivity and clock reversal" time="0.535" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT01 lockout persists and expires" time="0.813" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT03 credentials salted reset invalidates sessions and requires change" time="0.955" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT03 account deactivation and last administrator protection" time="0.576" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT04 AT05 school administration constraints and mapping changes" time="0.485" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT06 assignment validation edits and freezing" time="0.466" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT07 extension changes effective deadline preserves receipt snapshot" time="0.475" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT09 AT10 exact deadline resubmission preserves prior bytes" time="0.471" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT09 first late work accepted after three days and marks zero" time="0.809" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT05 attachment size and malformed file partitions" time="0.494" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT03 direct service authorization blocks resource enumeration and work theft" time="0.481" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT12 marking range feedback authority timing and stale version" time="0.482" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT02 transaction rollback prevents unaudited marks" time="0.488" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT13 AT14 AT15 moderation release visibility and department separation" time="0.555" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT18 reopening hides results and requires fresh moderation" time="0.479" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="AT13 returning an approved mark invalidates approval" time="0.491" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT01 AT19 persistent backup reopens with work and audit intact" time="0.542" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT06 database rejects duplicate keys and immutable-history mutations" time="0.494" status="run"/>
+    <testcase classname="lms_tests.global" name="IT07 invalid database and unsupported future schema fail safely" time="0.003" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR01 CR06 class extension reaches all lists and later enrolments" time="0.683" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR02 later individual accommodation always wins" time="0.494" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR03 CR04 invalid or unauthorized class requests leave data unchanged" time="0.496" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR05 any first assessment freezes class extensions" time="0.534" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR07 extension reclassifies received work and reopens resubmission window" time="0.539" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="CR08 additive v1 migration preserves existing results and audits" time="0.514" status="run"/>
+    <testcase classname="lms_tests.Fixture" name="IT08 failure after every assessment write rolls back the entire command" time="0.543" status="run"/>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

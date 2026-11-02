@@ -1,0 +1,34 @@
+[
+  {
+    "test": "SYS01 administration and forced password change",
+    "passed": true
+  },
+  {
+    "test": "SYS02 receipt and hidden results",
+    "passed": true
+  },
+  {
+    "test": "SYS03 mark through release",
+    "passed": true
+  },
+  {
+    "test": "SYS04 results withheld before moderation",
+    "passed": true
+  },
+  {
+    "test": "SYS05 rejected resubmission recovers to usable menu",
+    "passed": true
+  },
+  {
+    "test": "SYS06 reopen hides and invalidates approval",
+    "passed": true
+  },
+  {
+    "test": "SYS07 malformed input does not crash",
+    "passed": true
+  },
+  {
+    "test": "SYS08 class extension and reason visible",
+    "passed": true
+  }
+]

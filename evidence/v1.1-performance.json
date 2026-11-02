@@ -1,0 +1,1 @@
+{"students":800,"staff":3,"courses":40,"assignments":800,"submissions":16000,"audit_events":48000,"attachment_bytes_each":128,"trials_each":100,"login_p95_ms":62.0424,"assignment_list_p95_ms":0.887098,"results_p95_ms":0.607813,"hash_memory_mib":64,"sample":"sequential warm database; synthetic shared fixture hash"}

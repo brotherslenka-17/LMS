@@ -1,0 +1,17 @@
+[  8%] Building C object CMakeFiles/sqlite3.dir/vendor/sqlite3.c.o
+[ 16%] Linking C static library libsqlite3.a
+[ 16%] Built target sqlite3
+[ 25%] Building CXX object CMakeFiles/lms_core.dir/src/domain/Domain.cpp.o
+[ 33%] Building CXX object CMakeFiles/lms_core.dir/src/application/Services.cpp.o
+[ 41%] Building CXX object CMakeFiles/lms_core.dir/src/infrastructure/SqliteRepository.cpp.o
+[ 50%] Linking CXX static library liblms_core.a
+[ 50%] Built target lms_core
+[ 58%] Building CXX object CMakeFiles/lms_tests.dir/tests/test_lms.cpp.o
+[ 66%] Building CXX object CMakeFiles/lms.dir/src/ui/main.cpp.o
+[ 75%] Linking CXX executable lms
+[ 75%] Built target lms
+[ 83%] Building CXX object CMakeFiles/lms_benchmark.dir/tests/benchmark.cpp.o
+[ 91%] Linking CXX executable lms_benchmark
+[ 91%] Built target lms_benchmark
+[100%] Linking CXX executable lms_tests
+[100%] Built target lms_tests

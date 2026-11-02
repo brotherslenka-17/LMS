@@ -1,0 +1,94 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D03d | Persistent domain records and multiplicities
+class UserRecord <<record>> {
++ Id id
++ std::string username, name, hash
++ Role role
++ bool active, mustChange
++ int failed
++ TimePoint lockedUntil
+}
+class Department <<record>> {
++ Id id
++ std::string name
+}
+class Course <<record>> {
++ Id id
++ std::string code, title
++ Id department
++ bool active
+}
+class Assignment <<record>> {
++ Id id, course, creator
++ std::string title, instructions
++ TimePoint deadline
++ MarkUnits maximum
+}
+class IndividualExtension <<record>> {
++ Id assignment, student, grantor
++ TimePoint deadline, at
++ std::string reason
+}
+class ClassExtension <<record>> {
++ Id assignment, grantor
++ TimePoint deadline, at
++ std::string reason
+}
+class Submission <<record>> {
++ Id id, assignment, student
++ std::string phase
++ int rowVersion
+}
+class SubmissionVersion <<record>> {
++ Id submission
++ int number
++ TimePoint received, deadlineAtReceipt
++ std::string filename
++ Bytes content
+}
+class Assessment <<record>> {
++ Id submission
++ int version
++ MarkUnits raw, final
++ std::int64_t days
++ TimePoint deadline
++ std::string feedback
++ Id marker
++ int revision
++ Id moderator, releasedBy
++ TimePoint moderatedAt, releasedAt
+}
+class AssessmentEvent <<record>> {
++ Id id, submission, actor
++ int revision
++ TimePoint at
++ std::string action
++ std::optional<MarkUnits> oldRaw, oldFinal
++ MarkUnits newRaw, newFinal
++ std::optional<std::string> oldFeedback
++ std::string newFeedback, oldPhase, newPhase, reason
+}
+Department "1" -- "0..*" Course
+Course "1" -- "0..*" Assignment
+Assignment "1" -- "0..*" Submission
+UserRecord "1" -- "0..*" Submission : student
+Assignment "1" -- "0..*" IndividualExtension
+Assignment "1" -- "0..1" ClassExtension
+Submission "1" *-- "1..*" SubmissionVersion
+Submission "1" -- "0..1" Assessment
+Submission "1" -- "0..*" AssessmentEvent
+note bottom
+Records have public fields. Services enforce cross-record invariants.
+IDs are persistent references; connectors show domain multiplicities, not C++ pointers.
+end note
+@enduml

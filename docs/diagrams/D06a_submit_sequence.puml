@@ -1,0 +1,40 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D06a | Submit transaction and extension-aware deadline
+actor Student
+participant "Console" as UI
+participant "AssessmentService" as S
+participant "AuthService" as A
+participant "IRepository / SQLite" as R
+participant "IClock" as C
+Student -> UI : submit(assignment, file)
+UI -> UI : read and validate file bytes
+UI -> S : submit(token, id, filename, bytes)
+S -> R : BEGIN IMMEDIATE (UnitOfWork)
+S -> A : authorize(token)
+A -> R : reload active identity
+S -> R : course, enrolment, assignment\nclass + individual extensions
+S -> S : D = max(base, class, individual)
+S -> C : now()
+S -> R : latest submission and version
+alt first valid work
+S -> R : addSubmission(); addVersion(1)
+else existing RECEIVED and t <= D
+S -> R : addVersion(n+1); increment row
+else ineligible / failed write
+S -> R : ROLLBACK (RAII)
+S --> UI : safe error; no receipt
+end
+S -> R : COMMIT if successful
+S --> UI : SubmissionVersion receipt
+UI --> Student : timestamp, version, ON TIME / LATE
+@enduml

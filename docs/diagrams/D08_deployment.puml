@@ -1,0 +1,34 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D08 | Single-workstation deployment and trust boundary
+node "School workstation\nC++17 runtime / local filesystem" {
+ artifact "lms executable\nUI + services + domain + DAL" as App
+ database "school.db\nSQLite v2 schema" as DB
+ artifact "SQLite + libsodium libraries" as Lib
+ App --> DB : bound SQL / atomic transactions
+ App --> Lib
+}
+node "Access-controlled backup storage\nOS / media encryption" {
+artifact "consistent backup.db" as Backup
+}
+node "Developer / CI build host" {
+artifact "CMake + compiler + Catch2\ncppcheck + gcovr" as Build
+}
+Build ..> App : verified release binary
+DB --> Backup : SQLite backup API; custodian copies
+note bottom of DB
+No runtime network dependency. One active console session.
+800 stored students is not 800 concurrent users.
+OS administrator and machine clock are trusted.
+SQLite itself does not encrypt this database.
+end note
+@enduml

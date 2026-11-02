@@ -1,0 +1,106 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D07b | Relational schema v2
+entity users {
+ * id : INTEGER <<PK>>
+ * username : TEXT
+ * display_name : TEXT
+ * password_hash : TEXT
+ * role : TEXT
+ * active : INTEGER
+ * must_change_password : INTEGER
+ * failed_attempts : INTEGER
+   locked_until : INTEGER
+}
+entity assignments {
+ * id : INTEGER <<PK>>
+ * course_id : INTEGER <<FK>>
+ * creator_id : INTEGER <<FK>>
+ * title : TEXT
+ * instructions : TEXT
+ * deadline_utc : INTEGER
+ * max_mark_units : INTEGER
+}
+entity submissions {
+ * id : INTEGER <<PK>>
+ * assignment_id : INTEGER <<FK>>
+ * student_id : INTEGER <<FK>>
+ * phase : TEXT
+ * row_version : INTEGER
+}
+entity submission_versions {
+ * submission_id : INTEGER <<PK>> <<FK>>
+ * version_no : INTEGER <<PK>>
+ * received_at : INTEGER
+ * deadline_at_receipt : INTEGER
+ * filename : TEXT
+ * content : BLOB
+}
+entity assessments {
+ * submission_id : INTEGER <<PK>> <<FK>>
+ * version_no : INTEGER <<FK>>
+ * raw_units : INTEGER
+ * final_units : INTEGER
+ * late_days : INTEGER
+ * effective_deadline : INTEGER
+ * feedback : TEXT
+ * marker_id : INTEGER <<FK>>
+ * revision : INTEGER
+   moderator_id : INTEGER <<FK>>
+   moderated_at : INTEGER
+   released_by : INTEGER <<FK>>
+   released_at : INTEGER
+}
+entity assessment_events {
+ * id : INTEGER <<PK>>
+ * submission_id : INTEGER <<FK>>
+ * revision : INTEGER
+ * actor_id : INTEGER <<FK>>
+ * occurred_at : INTEGER
+ * action : TEXT
+   old_raw_units : INTEGER
+ * new_raw_units : INTEGER
+   old_final_units : INTEGER
+ * new_final_units : INTEGER
+   old_feedback : TEXT
+ * new_feedback : TEXT
+ * old_phase : TEXT
+ * new_phase : TEXT
+ * reason : TEXT
+}
+entity admin_events {
+ * id : INTEGER <<PK>>
+ * actor_id : INTEGER <<FK>>
+ * occurred_at : INTEGER
+ * entity_type : TEXT
+ * entity_key : TEXT
+ * action : TEXT
+   old_value : TEXT
+ * new_value : TEXT
+ * reason : TEXT
+}
+users ||--o{ assignments
+users ||--o{ submissions
+assignments ||--o{ submissions
+submissions ||--o{ submission_versions
+submission_versions ||--o| assessments
+users ||--o{ assessments
+submissions ||--o| assessments
+users ||--o{ assessment_events
+submissions ||--o{ assessment_events
+users ||--o{ admin_events
+note bottom
+* means mandatory (including primary keys). Connectors show parent-child cardinality.
+Multiple FKs to users share one connector; exact column mapping is in the dictionary.
+Overlapping users/assignments are the same tables on both sheets.
+end note
+@enduml

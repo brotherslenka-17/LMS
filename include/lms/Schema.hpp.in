@@ -1,0 +1,5 @@
+#pragma once
+namespace lms {
+inline constexpr const char* INITIAL_SCHEMA = R"LMS_SCHEMA(@INITIAL_SCHEMA_TEXT@)LMS_SCHEMA";
+inline constexpr const char* CLASS_SCHEMA = R"LMS_SCHEMA(@CLASS_SCHEMA_TEXT@)LMS_SCHEMA";
+}

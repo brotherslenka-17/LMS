@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D03b | Application classes - actual C++ declarations
+class AuthService {
++ AuthService(IRepository &repo, IClock &clock)
++ void bootstrap(const std::string &username, const std::string &name, const std::string &password)
++ std::string login(const std::string &username, const std::string &password)
++ void logout(const std::string &token)
++ Context authorize(const std::string &token, bool allowPasswordChange = false)
++ bool mustChange(const std::string &token)
++ void changePassword(const std::string &token, const std::string &oldPassword, const std::string &newPassword)
++ static std::string hashPassword(const std::string &password)
+- repo_ : IRepository&
+- clock_ : IClock&
+- sessions_ : map<string, Session>
+}
+class AdminService {
++ AdminService(IRepository &repo, AuthService &auth, IClock &clock)
++ std::vector<UserRecord> users(const std::string &token)
++ std::vector<Department> departments(const std::string &token)
++ Id createUser(const std::string &token, const std::string &username, const std::string &name, Role role, const std::string &password)
++ void editUser(const std::string &token, Id user, const std::string &name, bool active)
++ void resetPassword(const std::string &token, Id user, const std::string &password)
++ Id createDepartment(const std::string &token, const std::string &name)
++ void renameDepartment(const std::string &token, Id department, const std::string &name)
++ void assignHead(const std::string &token, Id department, Id user)
++ Id createCourse(const std::string &token, const std::string &code, const std::string &title, Id department)
++ void editCourse(const std::string &token, Id course, const std::string &title, bool active)
++ void assignLecturer(const std::string &token, Id course, Id user, bool assigned)
++ void enrol(const std::string &token, Id course, Id student, bool active)
++ std::vector<std::pair<Id, bool>> enrolments(const std::string &token, Id course)
++ std::vector<Id> lecturers(const std::string &token, Id course)
++ void backup(const std::string &token, const std::string &path)
+- repo_ : IRepository&
+- clock_ : IClock&
+- auth_ : AuthService&
+}
+interface IRepository
+interface IClock
+AuthService --> "1" IRepository
+AuthService --> "1" IClock
+AdminService --> "1" IRepository
+AdminService --> "1" IClock
+AdminService --> "1" AuthService
+note bottom
+Signatures reproduce the C++ header. Private helper methods remain in source.
+Services borrow dependencies; the composition root owns their lifetimes.
+end note
+@enduml

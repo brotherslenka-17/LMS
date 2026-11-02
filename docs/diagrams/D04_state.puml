@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D04 | Submission assessment state machine
+[*] --> RECEIVED : first submit [valid scope/file]\n/ save immutable version
+RECEIVED --> RECEIVED : resubmit [t <= D]\n/ append version
+RECEIVED --> MARKED : mark [t > D; current row]\n/ assessment + event
+MARKED --> MARKED : revise / event + revision
+MARKED --> MODERATED : HoD moderate [current revision]\n/ save approval + event
+MODERATED --> MARKED : HoD return / clear approval + event
+MARKED --> MARKED : HoD return / reason + event
+MODERATED --> RELEASED : HoD release [current revision]\n/ release metadata + event
+RELEASED --> MARKED : HoD reopen / hide + clear approval + event
+note right of RECEIVED
+ON TIME / LATE are derived receipt labels.
+First late work is accepted at any lateness.
+D = max(base, class, individual).
+end note
+note right of RELEASED
+Only RELEASED is student-visible.
+Every assessment transition is atomic with audit.
+No final deletion state is exposed.
+end note
+@enduml

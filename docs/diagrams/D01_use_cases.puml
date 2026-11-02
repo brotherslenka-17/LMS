@@ -1,0 +1,55 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam dpi 140
+skinparam ArrowColor #17354c
+skinparam classBackgroundColor #edf5f7
+skinparam classBorderColor #087f8c
+skinparam packageStyle rectangle
+title D01 | Use cases - v1.1
+left to right direction
+actor "Authenticated user" as U
+actor Student as S
+actor Lecturer as L
+actor "Head of Department" as H
+actor Administrator as A
+U <|-- S
+U <|-- L
+U <|-- H
+U <|-- A
+rectangle LMS {
+usecase "UC01 Manage session" as Session
+usecase "UC02 Manage school" as School
+usecase "UC03 Create assignment" as Assignment
+usecase "UC04 Grant extension" as Extension
+usecase "UC05 List assignments" as List
+usecase "UC06 Submit work" as Submit
+usecase "Validate submission" as Validate
+usecase "Resubmit work" as Resubmit
+usecase "UC07 Mark work" as Mark
+usecase "UC08 Moderate" as Moderate
+usecase "UC09 Release / reopen" as Release
+usecase "UC10 View own results" as Results
+}
+U --> Session
+A --> School
+L --> Assignment
+L --> Extension
+L --> Mark
+H --> Moderate
+H --> Release
+S --> Submit
+S --> List
+S --> Results
+Submit .> Validate : <<include>>
+Resubmit .> Submit : <<extend>>
+[existing work; RECEIVED; t <= D]
+note right of Extension
+Individual and class extensions.
+Authentication is a precondition;
+resource scope is checked per command.
+end note
+@enduml

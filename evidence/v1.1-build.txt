@@ -1,0 +1,9 @@
+[ 10%] Linking C static library libsqlite3.a
+[ 20%] Built target sqlite3
+[ 30%] Linking CXX static library liblms_core.a
+[ 60%] Built target lms_core
+[ 70%] Linking CXX executable lms
+[ 80%] Building CXX object CMakeFiles/lms_tests.dir/tests/test_lms.cpp.o
+[ 90%] Built target lms
+[100%] Linking CXX executable lms_tests
+[100%] Built target lms_tests
