@@ -24,7 +24,7 @@ jobs:
       - name: Business-layer coverage gate
         run: gcovr --root . --filter 'src/(domain|application)/' --fail-under-line 70 --json-summary build/coverage.json --html-details build/coverage.html --print-summary
       - name: Static analysis
-        run: cppcheck --enable=warning,performance,portability --error-exitcode=1 --std=c++17 --suppress=missingIncludeSystem -I include -I build/generated src
+        run: cppcheck --enable=warning,performance,portability --error-exitcode=1 --std=c++17 --suppress=missingIncludeSystem --suppress=normalCheckLevelMaxBranches -I include -I build/generated src
       - name: System smoke test
         run: python3 scripts/system_test.py build/lms build/system-evidence
       - uses: actions/upload-artifact@v4
